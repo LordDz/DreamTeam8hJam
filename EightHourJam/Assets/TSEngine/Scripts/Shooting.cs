@@ -416,7 +416,7 @@ public class Shooting : MonoBehaviour {
         //setting all the visual effects
         Transform clone = Instantiate(currentWeapon.BulletTrailPrefab, spawnPoint.position, spawnPoint.rotation);
         MoveTrail mt = clone.gameObject.GetComponent<MoveTrail>();
-        mt.Setup(dir);
+        mt.Setup(dir, Team, currentWeapon.damage);
         Effect();
 
         if (hit.collider != null)
@@ -432,49 +432,7 @@ public class Shooting : MonoBehaviour {
 
             if (hit.collider.CompareTag("Player"))
             {
-                PlayerController playerHit = hit.collider.GetComponent<PlayerController>();
-                bool isSameTeam = this.Team == playerHit.TeamPlr;
-                bool canDamageTarget = playerHit.DamageType != currentWeapon.damageType;
-
-                if (!isSameTeam && canDamageTarget)
-                {
-                    Debug.Log("Can damage target: " + canDamageTarget);
-                }
-
-                if (!isSameTeam)
-                {
-                    if (canDamageTarget)
-                    {
-                        playerHit.health -= currentWeapon.damage;
-                        playerHit.UpdatePlayerUIHealth();
-                    }
-                }
                 
-                //player.UpdateHealth();
-               
-
-                if (isSameTeam)
-                {
-                    AudioManager.instance.Play(currentWeapon.friendlyImpactSound);
-                }
-                else
-                {
-                    if (canDamageTarget)
-                    {
-                        AudioManager.instance.Play(currentWeapon.enemyImpactSound);
-                        GameObject impact = Instantiate(currentWeapon.enemyImpact.gameObject, hit.point, Quaternion.identity) as GameObject;
-                        
-                        if (currentWeapon.parentImpact)
-                        {
-                            impact.transform.parent = playerHit.gameObject.transform;
-                        }
-                        Destroy(impact, currentWeapon.enemyImpactDuration);
-                    }
-                    else
-                    {
-                        AudioManager.instance.Play(currentWeapon.enemyImpactSoundNoDamage);
-                    }
-                }
             }
             if (hit.collider.tag == "Explosive")
             {

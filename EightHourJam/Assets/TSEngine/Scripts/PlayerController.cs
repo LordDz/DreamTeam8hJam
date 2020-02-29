@@ -78,7 +78,6 @@ public class PlayerController : MonoBehaviour {
                     break;
                 }
             }
-
         }
         ShowHealth();
     }
