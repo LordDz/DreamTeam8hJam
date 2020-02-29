@@ -9,11 +9,12 @@ public class BarrelExplode : MonoBehaviour {
     public float health;
     public GameObject explosionPrefab;
     public float explosionDuration;
+
     Collider2D col;
 	// Use this for initialization
 	void Start () {
         col = gameObject.GetComponent<Collider2D>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {

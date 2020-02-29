@@ -38,10 +38,15 @@ public class MoveTrail : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("bullet hit something");
         if (collision.tag == "Destructible")
         {
             Destroy(gameObject);
+        }
+
+        if (collision.tag == "Explosive")
+        {
+            BarrelExplode be = collision.GetComponent<BarrelExplode>();
+            be.health -= damage;
         }
 
         if (collision.tag == "Player")

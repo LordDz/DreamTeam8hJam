@@ -28,6 +28,10 @@ public class WinScreen : MonoBehaviour
     public void Win(Team team)
     {
         Debug.Log("Win!");
+
+        MusicPlayer musicPlayer = FindObjectOfType<MusicPlayer>();
+        musicPlayer.StopPlayingMusic();
+
         //Win condition is reversed
         if (team != Team.One)
         {

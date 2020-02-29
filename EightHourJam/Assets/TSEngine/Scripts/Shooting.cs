@@ -421,13 +421,12 @@ public class Shooting : MonoBehaviour {
 
         if (hit.collider != null)
         {
-            Debug.Log("HitTarget: " + hit.collider.tag);
             Debug.DrawLine(spawnPointPosition, hit.point, Color.red);
             if (hit.collider.CompareTag("Destructible"))
             {
-                GameObject impact = Instantiate(currentWeapon.objectImpact.gameObject, hit.point, Quaternion.identity) as GameObject;
-                AudioManager.instance.Play(currentWeapon.impactSound);
-                Destroy(impact, currentWeapon.objectImpactDuration);
+                //GameObject impact = Instantiate(currentWeapon.objectImpact.gameObject, hit.point, Quaternion.identity) as GameObject;
+                //AudioManager.instance.Play(currentWeapon.impactSound);
+                //Destroy(impact, currentWeapon.objectImpactDuration);
             }
 
             if (hit.collider.CompareTag("Player"))
@@ -436,8 +435,8 @@ public class Shooting : MonoBehaviour {
             }
             if (hit.collider.tag == "Explosive")
             {
-                BarrelExplode be = hit.collider.gameObject.GetComponent<BarrelExplode>();
-                be.health -= currentWeapon.damage;
+                //BarrelExplode be = hit.collider.gameObject.GetComponent<BarrelExplode>();
+                //be.health -= currentWeapon.damage;
             }
         }
     }

@@ -28,13 +28,14 @@ public class BarrelExplosion : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             PlayerController pc = collision.GetComponent<PlayerController>();
             if (pc != null)
             {
                 pc.health -= explosionDamage;
                 pc.ShowHealth();
+                pc.UpdatePlayerUIHealth();
             }
         }
         if (collision.tag == "Enemy")
@@ -52,8 +53,6 @@ public class BarrelExplosion : MonoBehaviour {
                         collision.transform.parent = clone.transform;
                     Destroy(clone, enemyImpactDuration);
                 }
-
-
             }
         }
 

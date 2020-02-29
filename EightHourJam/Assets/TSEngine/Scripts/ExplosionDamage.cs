@@ -21,14 +21,18 @@ public class ExplosionDamage : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Boom!");
+
         if (collision.tag == "Player")
         {
             PlayerController pc = collision.GetComponent<PlayerController>();
             if (pc != null)
             {
-                pc.health -= weapon.explosionDamage;
+                pc.health -= 20; // weapon.explosionDamage;
                 pc.ShowHealth();
+                pc.UpdatePlayerUIHealth();
             }
+            Destroy(this.gameObject);
         }
         if (collision.tag == "Enemy")
         {
