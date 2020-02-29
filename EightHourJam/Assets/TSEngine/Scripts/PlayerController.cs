@@ -127,6 +127,8 @@ public class PlayerController : MonoBehaviour {
         }
         if (health <= 0)
         {
+            WinScreen winScreen = FindObjectOfType<WinScreen>();
+            winScreen.Win(this.TeamPlr);
             Destroy(gameObject);
         }
     }
