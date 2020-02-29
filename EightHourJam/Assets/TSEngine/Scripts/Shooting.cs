@@ -130,7 +130,6 @@ public class Shooting : MonoBehaviour {
         if (SwitchDelay <= 0 && (PlayerNr == 1 && Input.GetButtonDown("ChangeWeapon1") ||
             PlayerNr == 3 && Input.GetAxisRaw("ChangeWeapon2") <= -1))
         {
-            Debug.Log("Player changing weapon: " + PlayerNr);
             if (switchable)
             {
                 SwitchDelay = 2f;
