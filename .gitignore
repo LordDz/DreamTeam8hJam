@@ -59,3 +59,6 @@ sysinfo.txt
 crashlytics-build.properties
 
 /EightHourJam/obj/Debug
+/EightHourJam/Library
+/EightHourJam/Logs
+/EightHourJam/Temp
