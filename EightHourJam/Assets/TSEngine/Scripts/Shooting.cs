@@ -446,6 +446,7 @@ public class Shooting : MonoBehaviour {
                     if (canDamageTarget)
                     {
                         playerHit.health -= currentWeapon.damage;
+                        playerHit.UpdatePlayerUIHealth();
                     }
                 }
                 

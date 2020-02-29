@@ -10,11 +10,11 @@ public class PlayerController : MonoBehaviour {
     public Team TeamPlr;
 
     private PlayerController playerToLookAt;
+    private PlayerHealthImg PlayerHealthImg;
 
     public Weapon.DamageType DamageType;
 
     public float maxHealth;
-    [HideInInspector]
     public float health;
 
     public float rotationOffset;
@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour {
         if (this.PlayerNr == 1 || this.PlayerNr == 3)
         {
             PlayerController[] players = FindObjectsOfType<PlayerController>();
+
             foreach (var player in players)
             {
                 if (this.TeamPlr == Team.One && player.PlayerNr == 3)
@@ -62,6 +63,22 @@ public class PlayerController : MonoBehaviour {
                     break;
                 }
             }
+
+            PlayerHealthImg[] healthImgs = FindObjectsOfType<PlayerHealthImg>();
+            foreach (var img in healthImgs)
+            {
+                if (this.TeamPlr == Team.One && img.PlayerNr == 1)
+                {
+                    this.PlayerHealthImg = img;
+                    break;
+                }
+                else if (this.TeamPlr == Team.Two && img.PlayerNr == 3)
+                {
+                    this.PlayerHealthImg = img;
+                    break;
+                }
+            }
+
         }
         ShowHealth();
     }
@@ -123,9 +140,12 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void DamagePlayerUI(float dmg)
+    public void UpdatePlayerUIHealth()
     {
-
+        if (PlayerHealthImg != null)
+        {
+            PlayerHealthImg.SetHealth(this.maxHealth, this.health);
+        }
     }
 
     float Remap(float value, float from1, float to1, float from2, float to2)
