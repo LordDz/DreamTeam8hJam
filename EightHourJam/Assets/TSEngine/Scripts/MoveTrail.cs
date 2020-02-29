@@ -33,7 +33,7 @@ public class MoveTrail : MonoBehaviour {
 
     void Update () {
         rb.velocity = transform.up * Time.deltaTime * speed;
-        Destroy(gameObject, shooting.currentWeapon.distance / rb.velocity.magnitude);
+        //Destroy(gameObject, shooting.currentWeapon.distance / rb.velocity.magnitude);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
